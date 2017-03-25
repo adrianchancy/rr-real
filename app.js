@@ -10,9 +10,22 @@ import { Provider, connect } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Actions, ActionConst, Router, Scene } from 'react-native-router-flux';
 import thunk from 'redux-thunk'
+var ScrollableTabView = require('react-native-scrollable-tab-view');
 
 import { appReducer } from './app/reducers';
 import Home from './app/scenes/home';
+
+class Stab extends React.Component {
+    render(){
+        return (
+          <ScrollableTabView tabBarPosition="bottom">
+             <Home tabLabel="React" />
+             <Home tabLabel="Flow" />
+             <Home tabLabel="Jest" />
+         </ScrollableTabView>
+        );
+    }
+}
 
 class TabIcon extends React.Component {
     render(){
@@ -24,10 +37,8 @@ class TabIcon extends React.Component {
 
 const Scenes = Actions.create(
     <Scene key='root'>
-        <Scene key='lists' tabs={true} hideNavBar type={ActionConst.REPLACE}>
-            <Scene key='tab1' title="Add" component={Home} icon={TabIcon}></Scene>
-            <Scene key='tab2' title="Grocery" component={Home}  icon={TabIcon}></Scene>
-            <Scene key='tab3' title="To Do" component={Home}  icon={TabIcon}></Scene>
+        <Scene key='lists' tabs={false} hideNavBar type={ActionConst.REPLACE}>
+            <Scene key='tab1' title="Add" component={Stab}></Scene>
         </Scene>
     </Scene>
 );
