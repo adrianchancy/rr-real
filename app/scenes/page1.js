@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
@@ -20,7 +20,7 @@ const rightButtonConfig = {
 };
 
 const titleConfig = {
-  title: 'Hello, world',
+  title: 'Page 1',
 };
 
 function ComponentWithNavigationBar() {
@@ -34,7 +34,7 @@ function ComponentWithNavigationBar() {
   );
 }
 
-class Home extends React.Component {
+class Page1 extends React.Component {
     state = {
         userItem: '',
     } // initiate value for state
@@ -49,12 +49,11 @@ class Home extends React.Component {
                 <Button style={styles.welcome} onPress={() => {addUserItem(userItem);}} title="Add User"/>
                 <Text>List</Text>
                 <Text>{JSON.stringify(userList)}</Text>
-                <TouchableHighlight onPress={Actions.page1}><Text>To Page 2</Text></TouchableHighlight>
             </View></View>);
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Page1);
 
 const styles = StyleSheet.create({
   main: {

@@ -14,6 +14,7 @@ var ScrollableTabView = require('react-native-scrollable-tab-view');
 
 import { appReducer } from './app/reducers';
 import Home from './app/scenes/home';
+import Page1 from './app/scenes/page1';
 
 class Stab extends React.Component {
     render(){
@@ -37,8 +38,9 @@ class TabIcon extends React.Component {
 
 const Scenes = Actions.create(
     <Scene key='root'>
-        <Scene key='lists' tabs={false} hideNavBar type={ActionConst.REPLACE}>
+        <Scene key='lists' tabs={false} type={ActionConst.REPLACE}>
             <Scene key='tab1' title="Add" component={Stab}></Scene>
+            <Scene key='page1' title="Page1" component={Page1}></Scene>
         </Scene>
     </Scene>
 );
