@@ -2,8 +2,10 @@ import React from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import NavigationBar from 'react-native-navbar';
 
 import { addToUserList } from '../actions';
+
 
 mapStateToProps = (state) => ({ userList: state.userReducer.userList });
 
@@ -13,6 +15,25 @@ mapDispatchToProps = (dispatch) => ({
     },
 }); //多於一個Action
 
+const rightButtonConfig = {
+  title: 'Next'
+};
+
+const titleConfig = {
+  title: 'Hello, world',
+};
+
+function ComponentWithNavigationBar() {
+  return (
+    <View style={styles.nav}>
+      <NavigationBar
+        title={titleConfig}
+        rightButton={rightButtonConfig}
+      />
+    </View>
+  );
+}
+
 class Home extends React.Component {
     state = {
         userItem: '',
@@ -21,18 +42,27 @@ class Home extends React.Component {
         const { userList, addUserItem } = this.props;
         const { userItem } = this.state;
         return(
-            <View style={styles.container}>
+            <View style={styles.main}>
+            <ComponentWithNavigationBar/>
+            <View style={styles.container}>
                 <TextInput style={styles.welcome} placeholder="Add User" onChangeText={(text) => this.setState({userItem: text})}/>
                 <Button style={styles.welcome} onPress={() => {addUserItem(userItem);}} title="Add User"/>
                 <Text>List</Text>
                 <Text>{JSON.stringify(userList)}</Text>
-            </View>);
+            </View></View>);
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
 const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  nav: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
