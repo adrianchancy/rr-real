@@ -12,21 +12,10 @@ import { Actions, ActionConst, Router, Scene } from 'react-native-router-flux';
 import thunk from 'redux-thunk'
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 
-import { appReducer } from './app/reducers';
-import Home from './app/scenes/home';
 import Page1 from './app/scenes/page1';
-
-class Stab extends React.Component {
-    render(){
-        return (
-          <ScrollableTabView tabBarPosition="bottom">
-             <Home tabLabel="React" />
-             <Home tabLabel="Flow" />
-             <Home tabLabel="Jest" />
-         </ScrollableTabView>
-        );
-    }
-}
+import { appReducer } from './app/reducers';
+import Stab from './app/scenes/stab';
+import { cleanUIState } from './app/actions';
 
 class TabIcon extends React.Component {
     render(){
